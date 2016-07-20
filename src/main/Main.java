@@ -9,7 +9,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		int[] array = {4, 3, 2, 1};
-		Sorting.insertionSort(array);
+		Sorting.selectionSort(array);
 		Printer.printArray(array);
 	}
 	

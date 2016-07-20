@@ -17,6 +17,14 @@ public class SortingTest {
 		Assert.assertArrayEquals(expected, input);
 	}
 	
+	@Test
+	public void testSelectionSort() {
+		int[] input = {4, 3, 2, 1};
+		int[] expected = {1, 2, 3, 4};
+		Sorting.selectionSort(input);
+		Assert.assertArrayEquals(expected, input);
+	}
+	
 //	@Test
 //	public void test() {
 //		fail("Not yet implemented");
