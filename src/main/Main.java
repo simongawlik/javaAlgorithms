@@ -9,8 +9,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		int[] array = {4, 3, 2, 1};
-		Sorting.selectionSort(array);
+		Sorting.mergeSort(array);
 		Printer.printArray(array);
+		
+		
 	}
 	
 	

@@ -39,4 +39,68 @@ public class Sorting {
 			array[i] = tmp;
 		}
 	}
+	
+	
+	public static void mergeSort(int[] array) {
+		if (array.length == 0) {
+			return;
+		}
+		mergeSort(array, 0, array.length - 1);
+	}
+	
+	private static void mergeSort(int[] array, int p, int r) {
+		if (p < r) {
+			int q = (p + r) / 2;
+			mergeSort(array, p, q);
+			mergeSort(array, q + 1, r);
+			merge(array, p, q, r);
+		} 
+	}
+	
+	
+	private static void merge(int[] array, int p, int q, int r) {
+		int n1 = q - p + 1;
+		int n2 = r - q;
+		
+		int i, j, k;
+		
+		int[] left = new int[n1];
+		int[] right = new int[n2];
+		
+		for (i = 0; i < n1; i++) {
+			left[i] = array[p + i];
+		}
+		for (j = 0; j < n2; j++) {
+			right[j] = array[q + j + 1];
+		}
+		
+		for (k = p, i = 0, j = 0; k <= r; k++) {
+			array[k] = i == n1 ? right[j++]
+					 : j == n2 ? left[i++]
+					 : right[j] < left[i] ? right[j++]
+					 : left[i++];
+		}
+		
+	}
+	
+	
+//	private static void merge(int[] array, int n, int m) {
+//		int i, j, k;
+//		
+//		int[] newArray = new int[n];
+//		
+//		for (i = 0, j = m, k = 0; k < n; k++) {
+//			newArray[k] = j == n ? array[i++]
+//					: i == m ? array[j++]
+//					: array[j] < array[i] ? array[j++]
+//					: array[i++];
+//		}
+//		for (i = 0; i < n; i++) {
+//			array[i] = newArray[i];
+//		}
+//	}
+	
+	
+	
+	
 }
