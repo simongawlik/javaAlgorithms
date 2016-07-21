@@ -40,7 +40,10 @@ public class Sorting {
 		}
 	}
 	
-	
+	/** Merge Sort (CLRS Ch2, p. 31f) 
+	 * running time is O(n*log(n)) 
+	 * currently using int[], should be polymorphic
+	 * */
 	public static void mergeSort(int[] array) {
 		if (array.length == 0) {
 			return;
@@ -83,22 +86,7 @@ public class Sorting {
 		
 	}
 	
-	
-//	private static void merge(int[] array, int n, int m) {
-//		int i, j, k;
-//		
-//		int[] newArray = new int[n];
-//		
-//		for (i = 0, j = m, k = 0; k < n; k++) {
-//			newArray[k] = j == n ? array[i++]
-//					: i == m ? array[j++]
-//					: array[j] < array[i] ? array[j++]
-//					: array[i++];
-//		}
-//		for (i = 0; i < n; i++) {
-//			array[i] = newArray[i];
-//		}
-//	}
+
 	
 	
 	
