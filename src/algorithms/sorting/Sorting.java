@@ -1,6 +1,24 @@
 package algorithms.sorting;
 
 public class Sorting {
+	
+	/** Bubble Sort (CLRS Ch2, p. 40) 
+	 * running time is O(n^2) 
+	 * currently using int[], should be polymorphic
+	 * */
+	public static void bubbleSort(int[] array) {
+		for (int i = 0; i < array.length - 1; i++) {
+			for (int j = array.length - 1; i < j; j--) {
+				if (array[j] < array[j - 1]) {
+					int tmp = array[j];
+					array[j] = array[j - 1];
+					array[j - 1] = tmp;
+				}
+			}
+		}
+	}
+	
+	
 	/** Insertion Sort (CLRS Ch2, p. 18) 
 	 * running time is O(n^2) 
 	 * currently using int[], should be polymorphic

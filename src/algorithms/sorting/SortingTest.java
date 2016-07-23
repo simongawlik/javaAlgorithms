@@ -8,7 +8,32 @@ import org.junit.Test;
 import printing.Printer;
 
 public class SortingTest {
-
+	
+	@Test
+	public void testBubbleSort() {
+		int[] input = {4, 3, 2, 1};
+		int[] expected = {1, 2, 3, 4};
+		Sorting.bubbleSort(input);
+		Assert.assertArrayEquals(expected, input);
+		
+		int[] input2 = {4};
+		int[] expected2 = {4};
+		Sorting.bubbleSort(input2);
+		Assert.assertArrayEquals(expected2, input2);
+		
+		// singlet
+		int[] input3 = {4};
+		int[] expected3 = {4};
+		Sorting.bubbleSort(input3);
+		Assert.assertArrayEquals(expected3, input3);
+		
+		// empty
+		int[] input4 = {};
+		int[] expected4 = {};
+		Sorting.bubbleSort(input4);
+		Assert.assertArrayEquals(expected4, input4);
+	}
+	
 	@Test
 	public void testInsertionSort() {
 		int[] input = {4, 3, 2, 1};
