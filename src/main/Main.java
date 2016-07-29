@@ -31,11 +31,23 @@ public class Main {
 		System.out.println(result.getHigh());
 		System.out.println(result.getSum());
 		
+		result = findMaxSubarray(array3, 0, 3);
+		System.out.println("low:  " + result.getLow());
+		System.out.println("high: " + result.getHigh());
+		System.out.println("sum:  " + result.getSum());
+		
+		
 		int[] array4 = {-1, -3, 5, 4, -2, 3, -10, -2};
 		result = findMaxCrossingSubarray(array4, 0, 3, 7);
 		System.out.println(result.getLow());
 		System.out.println(result.getHigh());
 		System.out.println(result.getSum());
+		
+		int[] array5 = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+		result = findMaxSubarray(array5, 0, 15);
+		System.out.println("low:  " + result.getLow());
+		System.out.println("high: " + result.getHigh());
+		System.out.println("sum:  " + result.getSum());
 	}
 	
 	public static int[][] squareMatrixMultiply(int[][] arrayA, int[][] arrayB) {
@@ -51,6 +63,27 @@ public class Main {
 			}
 		}
 		return arrayC;
+	}
+	
+	
+	/** Divide and Conquer Maximum-Subarray Algorithm (CLRS Ch4, p. 71/72)
+	 * running time is
+	 * */
+	public static ValueHolder findMaxSubarray(int[] array, int low, int high) {
+		if (high == low) {
+			return new ValueHolder(low, high, array[low]);
+		}
+		int mid = (low + high) / 2;
+			ValueHolder left = findMaxSubarray(array, low, mid);
+			ValueHolder right = findMaxSubarray(array, mid + 1, high);
+			ValueHolder cross = findMaxCrossingSubarray(array, low, mid, high);
+			if (left.getSum() >= right.getSum() && left.getSum() >= cross.getSum()) {
+				return left;
+			} else if (right.getSum() >= left.getSum() && right.getSum() >= cross.getSum()) {
+				return right;
+			} else {
+				return cross;
+			}
 	}
 	
 	
