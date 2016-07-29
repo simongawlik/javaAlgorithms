@@ -73,17 +73,18 @@ public class Main {
 		if (high == low) {
 			return new ValueHolder(low, high, array[low]);
 		}
-		int mid = (low + high) / 2;
-			ValueHolder left = findMaxSubarray(array, low, mid);
-			ValueHolder right = findMaxSubarray(array, mid + 1, high);
-			ValueHolder cross = findMaxCrossingSubarray(array, low, mid, high);
-			if (left.getSum() >= right.getSum() && left.getSum() >= cross.getSum()) {
-				return left;
-			} else if (right.getSum() >= left.getSum() && right.getSum() >= cross.getSum()) {
-				return right;
-			} else {
-				return cross;
-			}
+		int mid = (high - low) / 2 + low;
+		
+		ValueHolder left = findMaxSubarray(array, low, mid);
+		ValueHolder right = findMaxSubarray(array, mid + 1, high);
+		ValueHolder cross = findMaxCrossingSubarray(array, low, mid, high);
+		if (left.getSum() >= right.getSum() && left.getSum() >= cross.getSum()) {
+			return left;
+		} else if (right.getSum() >= left.getSum() && right.getSum() >= cross.getSum()) {
+			return right;
+		} else {
+			return cross;
+		}
 	}
 	
 	

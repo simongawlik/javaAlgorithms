@@ -71,7 +71,7 @@ public class Sorting {
 	
 	private static void mergeSort(int[] array, int p, int r) {
 		if (p < r) {
-			int q = (p + r) / 2;
+			int q = ((r - p) / 2) + p;   // this is taking the average but avoiding integer overflow
 			mergeSort(array, p, q);
 			mergeSort(array, q + 1, r);
 			merge(array, p, q, r);
