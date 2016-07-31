@@ -21,8 +21,8 @@ public class Main {
 		Random random = new Random();
 		int max = 100;
 		int min = -100;
-		int trials = 1000000;
-		int arrayLength = 120;
+		int trials = 100000;
+		int arrayLength = 300;
 		int[][] testArray = new int[trials][arrayLength];
 		for (int t = 0; t < trials; t++) {
 			for (int i = 0; i < arrayLength; i++) {
@@ -49,6 +49,15 @@ public class Main {
 		seconds = ((double)estimatedTime / 1000000000);
 		System.out.println("Divide & Conquer Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
 		
+		
+		// Timing Hybrid
+		startTime = System.nanoTime();    
+		for (int[] singleTest : testArray) {
+			ValueHolder result = MaxSubarray.hybridMaxSubarray(singleTest);
+		}
+		estimatedTime = System.nanoTime() - startTime;
+		seconds = ((double)estimatedTime / 1000000000);
+		System.out.println("Hybrid Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
 	}
 	
 	

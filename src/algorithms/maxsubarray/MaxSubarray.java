@@ -4,6 +4,10 @@ package algorithms.maxsubarray;
 
 public class MaxSubarray {
 	
+	// determined crossover point with time trials between brute force and 
+	// divide & conquer implementations 
+	private static int CROSSOVERPT = 120;
+	
 	/** Divide and Conquer Maximum-Subarray Algorithm (CLRS Ch4, p. 71/72)
 	 * running time is O(n * log(n))
 	 * */
@@ -59,13 +63,17 @@ public class MaxSubarray {
 	 * 
 	 */
 	public static ValueHolder bruteForceMaxSubarray(int[] array) {
+		return bruteForceMaxSubarray(array, 0, array.length - 1);
+	}
+	
+	public static ValueHolder bruteForceMaxSubarray(int[] array, int low, int high) {
 		int maxLow = 0;
 		int maxHigh = 0;
 		int maxSum = array[0];
 		
-		for (int i = 0; i < array.length; i++) {
+		for (int i = low; i <= high; i++) {
 			int currSum = array[i];
-			for (int j = i + 1; j < array.length; j++) {
+			for (int j = i + 1; j <= high; j++) {
 				currSum += array[j];
 				if (currSum > maxSum) {
 					maxLow = i;
@@ -76,6 +84,31 @@ public class MaxSubarray {
 		}
 		return new ValueHolder(maxLow, maxHigh, maxSum);
 	}
+	
+	public static ValueHolder hybridMaxSubarray(int[] array) {
+		return findMaxSubarray(array, 0, array.length - 1);
+	}
+	
+	public static ValueHolder hybridMaxSubarray(int[] array, int low, int high) {
+		if (high - low < CROSSOVERPT) {
+			return bruteForceMaxSubarray(array, low, high);
+		}
+		int mid = (high - low) / 2 + low;
+		
+		ValueHolder left = hybridMaxSubarray(array, low, mid);
+		ValueHolder right = hybridMaxSubarray(array, mid + 1, high);
+		ValueHolder cross = findMaxCrossingSubarray(array, low, mid, high);
+		if (left.getSum() >= right.getSum() && left.getSum() >= cross.getSum()) {
+			return left;
+		} else if (right.getSum() >= left.getSum() && right.getSum() >= cross.getSum()) {
+			return right;
+		} else {
+			return cross;
+		}
+	}
+	
+	
+	
 	
 }
 
