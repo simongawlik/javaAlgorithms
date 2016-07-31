@@ -26,7 +26,7 @@ public class MaxSubarray {
 	}
 	
 	
-	public static ValueHolder findMaxCrossingSubarray(int[] array, int low, int mid, int high) {
+	private static ValueHolder findMaxCrossingSubarray(int[] array, int low, int mid, int high) {
 		int maxLeft = 0;
 		int leftSum = Integer.MIN_VALUE; // sorta hackish Cormen
 		int sum = 0;
@@ -49,5 +49,26 @@ public class MaxSubarray {
 		}
 		return new ValueHolder(maxLeft, maxRight, leftSum + rightSum);
 	}
+	
+	
+	public static ValueHolder bruteForceMaxSubarray(int[] array) {
+		int maxLow = 0;
+		int maxHigh = 0;
+		int maxSum = array[0];
+		
+		for (int i = 0; i < array.length; i++) {
+			int currSum = array[i];
+			for (int j = i + 1; j < array.length; j++) {
+				currSum += array[j];
+				if (currSum > maxSum) {
+					maxLow = i;
+					maxHigh = j;
+					maxSum = currSum;
+				}
+			}
+		}
+		return new ValueHolder(maxLow, maxHigh, maxSum);
+	}
+	
 }
 
