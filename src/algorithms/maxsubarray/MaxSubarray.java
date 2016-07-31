@@ -5,7 +5,7 @@ package algorithms.maxsubarray;
 public class MaxSubarray {
 	
 	/** Divide and Conquer Maximum-Subarray Algorithm (CLRS Ch4, p. 71/72)
-	 * running time is
+	 * running time is O(n * log(n))
 	 * */
 	public static ValueHolder findMaxSubarray(int[] array, int low, int high) {
 		if (high == low) {
@@ -50,7 +50,10 @@ public class MaxSubarray {
 		return new ValueHolder(maxLeft, maxRight, leftSum + rightSum);
 	}
 	
-	
+	/** Brute Force Maximum-Subarray Algorithm (CLRS ch4, p. 74)
+	 * running time is O(n^2)
+	 * 
+	 */
 	public static ValueHolder bruteForceMaxSubarray(int[] array) {
 		int maxLow = 0;
 		int maxHigh = 0;
