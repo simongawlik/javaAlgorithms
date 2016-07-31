@@ -7,6 +7,10 @@ public class MaxSubarray {
 	/** Divide and Conquer Maximum-Subarray Algorithm (CLRS Ch4, p. 71/72)
 	 * running time is O(n * log(n))
 	 * */
+	public static ValueHolder findMaxSubarray(int[] array) {
+		return findMaxSubarray(array, 0, array.length - 1);
+	}
+	
 	public static ValueHolder findMaxSubarray(int[] array, int low, int high) {
 		if (high == low) {
 			return new ValueHolder(low, high, array[low]);
