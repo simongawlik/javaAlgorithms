@@ -71,9 +71,23 @@ public class Main {
 		
 		int[][] P1, P2, P3, P4, S1, S2 = new int[halfn][halfn];
 		
+		// calculate P5
 		S1 = addMatrices(A, 0, 0, A, halfn, halfn, halfn);
 		S2 = addMatrices(A, 0, 0, A, halfn, halfn, halfn);
 		P1 = strassen(S1, S2);
+		
+		// calculate P4
+		S1 = subtractMatrices(B, halfn, 0, B, 0, 0, halfn);
+		int[][] A22 = copyMatrix(A, halfn, halfn, halfn);
+		P2 = strassen(A22, S1);
+		
+		// calculate P2
+		
+		// calculate P6
+		
+		// calculate C11 = P5 + P4 - P2 + P6
+		
+		
 		
 		// TODO
 		
@@ -81,7 +95,15 @@ public class Main {
 	}
 	
 	
-	
+	public static int[][] copyMatrix(int[][] source, int offsetTop, int offsetSide, int n) {
+		int[][] C = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				C[i][j] = source[i + offsetTop][j + offsetSide];
+			}
+		}
+		return C;
+	}
 	
 	public static int[][] addMatrices(int[][] A, int offsetTopA, int offsetSideA, int[][] B, int offsetTopB, int offsetSideB, int n) {
 		int[][] C = new int[n][n];
@@ -92,20 +114,11 @@ public class Main {
 		}
 		return C;
 	}
-	public static int[][] addMatrices(int[][] A, int[][] B) {
-		int[][] C = new int[A.length][A[0].length];
-		for (int i = 0; i < A.length; i++) {
-			for (int j = 0; j < A[0].length; j++) {
-				C[i][j] = A[i][j] + B[i][j];
-			}
-		}
-		return C;
-	}
-	public static int[][] subtractMatrices(int[][] A, int[][] B) {
-		int[][] C = new int[A.length][A[0].length];
-		for (int i = 0; i < A.length; i++) {
-			for (int j = 0; j < A[0].length; j++) {
-				C[i][j] = A[i][j] - B[i][j];
+	public static int[][] subtractMatrices(int[][] A, int offsetTopA, int offsetSideA, int[][] B, int offsetTopB, int offsetSideB, int n) {
+		int[][] C = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				C[i][j] = A[i + offsetTopA][j + offsetSideA] - B[i + offsetTopB][j + offsetSideB];
 			}
 		}
 		return C;
