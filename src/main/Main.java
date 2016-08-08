@@ -82,6 +82,9 @@ public class Main {
 		P2 = strassen(A22, S1);
 		
 		// calculate P2
+		S2 = addMatrices(A, 0, 0, A, 0, halfn, halfn);
+		int[][] B22 = copyMatrix(B, halfn, halfn, halfn);
+		P3 = strassen(S2, B22);
 		
 		// calculate P6
 		
