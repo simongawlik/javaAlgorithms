@@ -87,6 +87,9 @@ public class Main {
 		P3 = strassen(S2, B22);
 		
 		// calculate P6
+		S1 = subtractMatrices(A, 0, halfn, A, halfn, halfn, halfn);
+		S2 = addMatrices(B, halfn, 0, B, halfn, halfn, halfn);
+		P4 = strassen(S1, S2);
 		
 		// calculate C11 = P5 + P4 - P2 + P6
 		
