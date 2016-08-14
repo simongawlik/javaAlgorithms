@@ -101,6 +101,14 @@ public class Main {
 	}
 	
 	
+	public static void reinsertMatrix(int[][] source, int[][] target, int offsetTop, int offsetSide, int n) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				target[i + offsetTop][j + offsetSide] = source[i][j]
+			}
+		}
+	}
+	
 	public static int[][] copyMatrix(int[][] source, int offsetTop, int offsetSide, int n) {
 		int[][] C = new int[n][n];
 		for (int i = 0; i < n; i++) {
