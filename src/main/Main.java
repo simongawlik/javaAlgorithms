@@ -93,7 +93,10 @@ public class Main {
 		
 		// calculate C11 = P5 + P4 - P2 + P6
 		// how to copy into c11?
-		
+		P1 = addMatrices(P1, 0, 0, P2, 0, 0, halfn);
+		P3 = subtractMatrices(P4, 0, 0, P3, 0, 0, halfn);
+		P1 = addMatrices(P1, 0, 0, P3, 0, 0, halfn);
+		reinsertMatrix(P1, C, 0, 0, halfn);
 		
 		// TODO
 		
@@ -104,7 +107,7 @@ public class Main {
 	public static void reinsertMatrix(int[][] source, int[][] target, int offsetTop, int offsetSide, int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				target[i + offsetTop][j + offsetSide] = source[i][j]
+				target[i + offsetTop][j + offsetSide] = source[i][j];
 			}
 		}
 	}
