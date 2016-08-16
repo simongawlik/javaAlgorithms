@@ -92,11 +92,20 @@ public class Main {
 		P4 = strassen(S1, S2);
 		
 		// calculate C11 = P5 + P4 - P2 + P6
-		// how to copy into c11?
-		P1 = addMatrices(P1, 0, 0, P2, 0, 0, halfn);
-		P3 = subtractMatrices(P4, 0, 0, P3, 0, 0, halfn);
-		P1 = addMatrices(P1, 0, 0, P3, 0, 0, halfn);
-		reinsertMatrix(P1, C, 0, 0, halfn);
+		P4 = subtractMatrices(P4, 0, 0, P3, 0, 0, halfn);
+		P4 = addMatrices(P4, 0, 0, P1, 0, 0, 0);
+		P4 = addMatrices(P4, 0, 0, P2, 0, 0, 0);
+		reinsertMatrix(P4, C, 0, 0, halfn);
+		
+		// calculate P1
+		int[][] A11 = copyMatrix(A, 0, 0, halfn);
+		S1 = subtractMatrices(B, 0, halfn, B, halfn, halfn, halfn);
+		P4 = strassen(A11, S1);
+		
+		// calculate C12 = P1 + P2
+		P3 = addMatrices(P4, 0, 0, P3, 0, 0, 0);
+		reinsertMatrix(P3, C, 0, 0, halfn);
+		
 		
 		// TODO
 		
