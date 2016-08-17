@@ -104,8 +104,16 @@ public class Main {
 		
 		// calculate C12 = P1 + P2
 		P3 = addMatrices(P4, 0, 0, P3, 0, 0, 0);
-		reinsertMatrix(P3, C, 0, 0, halfn);
+		reinsertMatrix(P3, C, 0, halfn, halfn);
 		
+		// calculate P3
+		int[][] B11 = copyMatrix(B, 0, 0, halfn);
+		S1 = addMatrices(A, halfn, 0, A, halfn, halfn, halfn);
+		P3 = strassen(S1, B11);
+		
+		// calculate C21 = P3 + P4
+		P2 = addMatrices(P3, 0, 0, P2, 0, 0, halfn);
+		reinsertMatrix(P2, C, halfn, 0, halfn);
 		
 		// TODO
 		
