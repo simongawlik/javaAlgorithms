@@ -115,6 +115,17 @@ public class Main {
 		P2 = addMatrices(P3, 0, 0, P2, 0, 0, halfn);
 		reinsertMatrix(P2, C, halfn, 0, halfn);
 		
+		// calculate P7
+		S1 = subtractMatrices(A, 0, 0, A, halfn, 0, halfn);
+		S2 = addMatrices(B, 0, 0, B, 0, halfn, halfn);
+		P2 = strassen(S1, S2);
+		
+		// calculate C22 = P5 + P1 - P3 - P7
+		S1 = addMatrices(P1, 0, 0, P4, 0, 0, halfn);
+		S2 = addMatrices(P3, 0, 0, P2, 0, 0, halfn);
+		P1 = subtractMatrices(S1, 0, 0, S2, 0, 0, halfn);
+		reinsertMatrix(P1, C, halfn, halfn, halfn);
+		
 		// TODO
 		
 		return C;
