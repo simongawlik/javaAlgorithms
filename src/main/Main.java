@@ -18,54 +18,74 @@ public class Main {
 //		Sorting.bubbleSort(array);
 //		Printer.printArray(array);
 		
+		int[][] A = {
+				{1, 2},
+				{3, 4}
+		};
+		
+		int[][] B = {
+				{1, 0},
+				{0, 1}
+		};
+		
+		int[][] C = strassen(A, B);
+		
+		Printer.printMatrix(C);
+		
 		
 		// fill test array for hybrid max subarray algorithm
-		Random random = new Random();
-		int max = 100;
-		int min = -100;
-		int trials = 100000;
-		int arrayLength = 300;
-		int[][] testArray = new int[trials][arrayLength];
-		for (int t = 0; t < trials; t++) {
-			for (int i = 0; i < arrayLength; i++) {
-				testArray[t][i] = random.nextInt((max - min) + 1) + min;
-			}
-		}
+//		Random random = new Random();
+//		int max = 100;
+//		int min = -100;
+//		int trials = 100000;
+//		int arrayLength = 300;
+//		int[][] testArray = new int[trials][arrayLength];
+//		for (int t = 0; t < trials; t++) {
+//			for (int i = 0; i < arrayLength; i++) {
+//				testArray[t][i] = random.nextInt((max - min) + 1) + min;
+//			}
+//		}
 		//Printer.printMatrix(testArray);
 		
 		// Timing Brute Force
-		long startTime = System.nanoTime();    
-		for (int[] singleTest : testArray) {
-			ValueHolder result = MaxSubarray.bruteForceMaxSubarray(singleTest);
-		}
-		long estimatedTime = System.nanoTime() - startTime;
-		double seconds = ((double)estimatedTime / 1000000000);
-		System.out.println("Brute Force Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
+//		long startTime = System.nanoTime();    
+//		for (int[] singleTest : testArray) {
+//			ValueHolder result = MaxSubarray.bruteForceMaxSubarray(singleTest);
+//		}
+//		long estimatedTime = System.nanoTime() - startTime;
+//		double seconds = ((double)estimatedTime / 1000000000);
+//		System.out.println("Brute Force Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
 		
 		// Timing Divide & Conquer
-		startTime = System.nanoTime();    
-		for (int[] singleTest : testArray) {
-			ValueHolder result = MaxSubarray.findMaxSubarray(singleTest);
-		}
-		estimatedTime = System.nanoTime() - startTime;
-		seconds = ((double)estimatedTime / 1000000000);
-		System.out.println("Divide & Conquer Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
+//		startTime = System.nanoTime();    
+//		for (int[] singleTest : testArray) {
+//			ValueHolder result = MaxSubarray.findMaxSubarray(singleTest);
+//		}
+//		estimatedTime = System.nanoTime() - startTime;
+//		seconds = ((double)estimatedTime / 1000000000);
+//		System.out.println("Divide & Conquer Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
 		
 		
 		// Timing Hybrid
-		startTime = System.nanoTime();    
-		for (int[] singleTest : testArray) {
-			ValueHolder result = MaxSubarray.hybridMaxSubarray(singleTest);
-		}
-		estimatedTime = System.nanoTime() - startTime;
-		seconds = ((double)estimatedTime / 1000000000);
-		System.out.println("Hybrid Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
+//		startTime = System.nanoTime();    
+//		for (int[] singleTest : testArray) {
+//			ValueHolder result = MaxSubarray.hybridMaxSubarray(singleTest);
+//		}
+//		estimatedTime = System.nanoTime() - startTime;
+//		seconds = ((double)estimatedTime / 1000000000);
+//		System.out.println("Hybrid Time : " + new DecimalFormat("#.##########").format(seconds) + " Seconds");
 	}
 	
 	public static int[][] strassen(int[][] A, int[][] B) {
 		
 		int n = A.length;
 		//assuming both matrices are n x n
+		
+		if (n == 1) {
+			A[0][0] = A[0][0] * B[0][0];
+			return A;
+		}
+		
 		int[][] C = new int[n][n];
 		int halfn = n / 2;
 		
