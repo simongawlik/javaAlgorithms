@@ -146,7 +146,7 @@ public class Main {
 		P1 = subtractMatrices(S1, 0, 0, S2, 0, 0, halfn);
 		reinsertMatrix(P1, C, halfn, halfn, halfn);
 		
-		// TODO
+		// TODO triage issue
 		
 		return C;
 	}
