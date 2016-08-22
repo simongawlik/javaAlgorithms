@@ -101,8 +101,6 @@ public class Main {
 		int[][] C = new int[n][n];
 		int halfn = n / 2;
 		
-		System.out.println(halfn);
-		
 		int[][] P1, P2, P3, P4, S1, S2 = new int[halfn][halfn];
 		
 		// calculate P5
@@ -127,10 +125,8 @@ public class Main {
 		
 		// calculate C11 = P5 + P4 - P2 + P6
 		P4 = subtractMatrices(P4, 0, 0, P3, 0, 0, halfn);
-		P4 = addMatrices(P4, 0, 0, P1, 0, 0, 0);
-		P4 = addMatrices(P4, 0, 0, P2, 0, 0, 0);
-		
-		Printer.printMatrix(P4);
+		P4 = addMatrices(P4, 0, 0, P1, 0, 0, halfn);
+		P4 = addMatrices(P4, 0, 0, P2, 0, 0, halfn);
 		reinsertMatrix(P4, C, 0, 0, halfn);
 		
 		// calculate P1
@@ -139,7 +135,7 @@ public class Main {
 		P4 = strassen(A11, S1);
 		
 		// calculate C12 = P1 + P2
-		P3 = addMatrices(P4, 0, 0, P3, 0, 0, 0);
+		P3 = addMatrices(P4, 0, 0, P3, 0, 0, halfn);
 		reinsertMatrix(P3, C, 0, halfn, halfn);
 		
 		// calculate P3
