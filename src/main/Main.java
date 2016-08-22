@@ -29,6 +29,7 @@ public class Main {
 		};
 		
 		int[][] C = strassen(A, B);
+		Printer.printMatrix(C);
 		
 		int[][] D = {
 				{1, 2, 3},
@@ -36,11 +37,12 @@ public class Main {
 				{3, 4, 5}
 		};
 		
-		//reinsertMatrix(B, D, 1, 1, 2);
+		int[][] E = {{9}};
 		
-		//Printer.printMatrix(D);
+//		reinsertMatrix(E, D, 0, 0, 1);
+//		Printer.printMatrix(D);
 		
-		Printer.printMatrix(C);
+		
 		
 		
 		// fill test array for hybrid max subarray algorithm
@@ -99,6 +101,8 @@ public class Main {
 		int[][] C = new int[n][n];
 		int halfn = n / 2;
 		
+		System.out.println(halfn);
+		
 		int[][] P1, P2, P3, P4, S1, S2 = new int[halfn][halfn];
 		
 		// calculate P5
@@ -125,6 +129,8 @@ public class Main {
 		P4 = subtractMatrices(P4, 0, 0, P3, 0, 0, halfn);
 		P4 = addMatrices(P4, 0, 0, P1, 0, 0, 0);
 		P4 = addMatrices(P4, 0, 0, P2, 0, 0, 0);
+		
+		Printer.printMatrix(P4);
 		reinsertMatrix(P4, C, 0, 0, halfn);
 		
 		// calculate P1
