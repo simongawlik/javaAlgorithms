@@ -30,6 +30,16 @@ public class Main {
 		
 		int[][] C = strassen(A, B);
 		
+		int[][] D = {
+				{1, 2, 3},
+				{2, 3, 4},
+				{3, 4, 5}
+		};
+		
+		//reinsertMatrix(B, D, 1, 1, 2);
+		
+		//Printer.printMatrix(D);
+		
 		Printer.printMatrix(C);
 		
 		
